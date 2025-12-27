@@ -1,3 +1,4 @@
+# 依據 113-11.cpp 的完整類別圖
 ```mermaid
 classDiagram
     %% 抽象基底類別
@@ -96,7 +97,9 @@ classDiagram
     Character <|-- Rogue : Inheritance
     Monster --> MonsterType : Uses
 ```
-\n+## 依據 project.cpp 的完整類別圖（2025-12-27）
+---
+
+# 依據 project.cpp 的完整類別圖（2025-12-27）
 
 ```mermaid
 classDiagram
