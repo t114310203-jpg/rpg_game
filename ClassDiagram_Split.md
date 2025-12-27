@@ -1,3 +1,4 @@
+# 依據 project.cpp 的拆分類別圖（2025-12-27）
 ```mermaid
 %% 戰鬥系統
 classDiagram
@@ -143,3 +144,4 @@ classDiagram
 
     InventorySlot o-- Item : references
 ```
+
