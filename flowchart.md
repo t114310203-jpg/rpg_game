@@ -1,3 +1,4 @@
+# 依據 113-11.cpp 的流程圖
 ```mermaid
 flowchart TD
     %% 主程式流程
@@ -60,7 +61,9 @@ flowchart TD
     style BattleLoop fill:#ffcccc,stroke:#f00
     style CheckMonDead fill:#ccffcc,stroke:#0f0
 ```
-\n+## 依據 project.cpp 的流程圖（2025-12-27）
+---
+
+# 依據 project.cpp 的流程圖（2025-12-27）
 
 ```mermaid
 %% 總覽：應用主流程
@@ -205,3 +208,4 @@ flowchart TD
     R --> Z
     S --> Z
 ```
+
