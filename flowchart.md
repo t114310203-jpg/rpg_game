@@ -65,6 +65,7 @@ flowchart TD
 
 # 依據 project.cpp 的流程圖（2025-12-27）
 
+## 主流程
 ```mermaid
 %% 總覽：應用主流程
 flowchart TD
@@ -98,7 +99,7 @@ flowchart TD
     classDef node fill:#fff,stroke:#333,stroke-width:1px
     class A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,D_false node
 ```
-
+## 戰鬥流程
 ```mermaid
 %% 詳細：battle 戰鬥流程
 flowchart TD
@@ -146,7 +147,7 @@ flowchart TD
     Z1b --> Z1c[發放獎勵金 + 經驗]
     Z1c --> Z1d([返回主循環])
 ```
-
+## 商店流程
 ```mermaid
 %% 詳細：openShop 商店流程
 flowchart TD
@@ -159,7 +160,7 @@ flowchart TD
     D -- 否 --> F[顯示金錢不足]
     F --> B
 ```
-
+## 隊伍/道具管理
 ```mermaid
 %% 詳細：openMenu 隊伍/道具管理
 flowchart TD
@@ -176,7 +177,7 @@ flowchart TD
     H --> B
     C -- 返回 --> Z([返回])
 ```
-
+## 搜查與隨機事件
 ```mermaid
 %% 詳細：investigate + triggerRandomEvent
 flowchart TD
@@ -208,4 +209,5 @@ flowchart TD
     R --> Z
     S --> Z
 ```
+
 
