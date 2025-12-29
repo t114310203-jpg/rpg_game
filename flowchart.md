@@ -115,7 +115,7 @@ flowchart TD
     H -- 是 --> I[顯示選單: 普攻/技能/道具]
     I --> J{選擇}
     J -- 普攻 --> K[計算傷害]
-    J -- 技能 --> L[技能就緒?]
+    J -- 技能 --> L{技能就緒?}
     L -- 否 --> I
     L -- 是 --> M[performSkill -> 傷害/治療]
     J -- 道具 --> N[useItemMenu]
@@ -209,5 +209,6 @@ flowchart TD
     R --> Z
     S --> Z
 ```
+
 
 
