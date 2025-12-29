@@ -198,17 +198,11 @@ flowchart TD
     L --> M{隨機事件觸發 40%}
     M -- 否 --> Z([返回])
     M -- 是 --> N{事件類型}
-    N -- SHARK --> O[顯示海域事件]
-    N -- SYSTEM_ERROR --> P[系統攔截攻擊]
-    N -- LUNCH --> Q[金錢 -30]
-    N -- RAN_KARATE --> R[線索 +1]
-    N -- AGASA_QUIZ --> S[全員 HP +50]
+    N -- SHARK --> O[隨機事件與(懲罰或獎勵)]
     O --> Z
-    P --> Z
-    Q --> Z
-    R --> Z
-    S --> Z
+
 ```
+
 
 
 
