@@ -96,7 +96,6 @@ flowchart TD
     R -- 1 重新開始 --> B
     R -- 0 離開程式 --> S([結束])
 
-    classDef node fill:#fff,stroke:#333,stroke-width:1px
     class A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,D_false node
 ```
 ## 戰鬥流程
@@ -202,6 +201,7 @@ flowchart TD
     O --> Z
 
 ```
+
 
 
 
