@@ -203,7 +203,7 @@ g++ -std=c++11 project.cpp -o game
 ## 📁 專案結構
 
 ```
-project6/
+project/
 ├── project.cpp            # 主程式
 ├── 113-11.cpp             # (舊版參考)
 ├── README.md              # 本文件
@@ -225,10 +225,11 @@ project6/
 
 ## 📝 授權與致謝
 
-- **開發者**：Chia
+- **開發者**：[Chia]
 - **開發日期**：2025年12月
 - **靈感來源**：名偵探柯南（Detective Conan）
 - **程式語言**：C++11
+- **開發環境**：VS Code
 
 ---
 
