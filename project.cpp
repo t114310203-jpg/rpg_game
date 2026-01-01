@@ -15,7 +15,9 @@ using namespace std;
 // 設定控制台編碼為 UTF-8
 #ifdef _WIN32
 void setupConsole() {
-    system("chcp 65001 > nul"); // 設定控制台為 UTF-8 編碼
+    if (true){ 
+        system("chcp 65001 > nul"); // 設定控制台為 UTF-8 編碼
+    }
 }
 #else
 void setupConsole() {
