@@ -7,14 +7,23 @@
 #include <limits>    // 數值限制
 #include <thread>    // 用於延遲顯示
 #include <chrono>    // 時間相關函式
-
 using namespace std;
 
 // ==========================================
 // 輔助函式區 (Helper Functions)
 // ==========================================
-
+// 設定控制台編碼為 UTF-8
+#ifdef _WIN32
+void setupConsole() {
+    system("chcp 65001 > nul"); // 設定控制台為 UTF-8 編碼
+}
+#else
+void setupConsole() {
+    // Linux/macOS 通常預設就支援 UTF-8 和 ANSI 顏色，不需額外設定
+}
+#endif
 //  ANSI顏色代碼
+#if (true) // 如果支援 ANSI 顏色
 namespace Color {
     const string RESET   = "\033[0m";    // 重置
     const string BOLD    = "\033[1m";    // 粗體
@@ -27,6 +36,20 @@ namespace Color {
     const string CYAN    = "\033[96m";   // 青色
     const string WHITE   = "\033[97m";   // 白色
 }
+#else
+namespace Color {
+    const string RESET   = "";   // 重置
+    const string BOLD    = "";   // 粗體
+    const string GRAY    = "";   // 灰色
+    const string RED     = "";   // 紅色
+    const string GREEN   = "";   // 綠色
+    const string YELLOW  = "";   // 黃色
+    const string BLUE    = "";   // 藍色
+    const string MAGENTA = "";   // 紫色
+    const string CYAN    = "";   // 青色
+    const string WHITE   = "";   // 白色
+}
+#endif
 
 // 隨機數生成器
 inline int getRandom(int min, int max) {
@@ -68,7 +91,7 @@ int getValidInput(int min, int max, string prompt = ">> 請選擇: ", string col
 }
 
 // 延遲顯示訊息函式
-void printMessage(const string& text, const string& name = "", int delayMs = 30, string color = "") {
+void printMessage(const string& text, const string& name = "", int delayMs = 25, string color = "") {
     // 預設顏色設定
     string finalColor = color;
     if (finalColor == "") {
@@ -488,11 +511,12 @@ namespace Story {
         printMessage("\n=== 序章：警視廳的暗流 ===", "", 30, Color::YELLOW);
         printMessage("雨夜的東京，警視廳大樓燈火通明。", "", 30, Color::CYAN);
         wait(1000);
-        printMessage("位於太平洋中心的設施「五稜星」遭受了未知的網路攻擊嘗試。", "黑田兵衛");
+        printMessage("位於太平洋中心的設施「五稜星」遭受了未知的網路攻擊。", "黑田兵衛");
         printMessage("他們的目標很明確，是那個剛上線的核心系統——「諾亞方舟」。", "安室透");
         printMessage("如果那個組織得到了這個系統，後果不堪設想。", "赤井秀一");
         printMessage("我們必須在他們行動之前，死守住「五稜星」。", "黑田兵衛");
         printMessage(">> 新地點解鎖：阿笠博士家", "", 30, Color::GREEN);
+        printMessage("試著搜查阿笠博士家", "神秘聲音", 0, Color::GRAY);
     }
 
     void triggerChapter1() {
@@ -502,6 +526,7 @@ namespace Story {
         printMessage("如果那個傳聞是真的，黑衣組織絕對不會放過這個機會。", "柯南");
         printMessage("喂，工藤。你有感覺到吧？那種令人作嘔的氣息。", "灰原哀");
         printMessage("嗯，我們得小心行事。", "柯南");
+        printMessage("或許繼續搜查會有新發現", "神秘聲音", 0, Color::GRAY);
     }
 
     void triggerChapter2() {
@@ -513,6 +538,7 @@ namespace Story {
         printMessage("畢竟這裡現在握有全世界的隱私鑰匙嘛，柯南君。", "安室透");
         printMessage("安室先生？你也來了...", "柯南");
         printMessage(">> 新地點解鎖：太平洋巡邏艦", "", 30, Color::GREEN);
+        printMessage("也許太平洋巡邏艦上會有新發現", "神秘聲音", 0, Color::GRAY);
     }
 
     void triggerChapter3() {
@@ -523,6 +549,7 @@ namespace Story {
         printMessage("江戶川柯南，小學一年級。", "諾亞方舟");
         printMessage("(呼... 沒顯示工藤新一，看來有限制權限...)", "柯南");
         printMessage(">> 新地點解鎖：五稜星大廳", "", 30, Color::GREEN);
+        printMessage("五稜星大廳閃過神秘的黑影", "神秘聲音", 0, Color::GRAY);
     }
 
     void triggerChapter4() {
@@ -533,6 +560,7 @@ namespace Story {
         printMessage("只要炸毀冷卻系統的閘門，我們就能趁機奪取控制權。", "伏特加");
         printMessage("動手。", "琴酒");
         printMessage(">> 新地點解鎖：中央控制室", "", 30, Color::GREEN);
+        printMessage("中央控制室似乎有異常", "神秘聲音", 0, Color::GRAY);
     }
 
     void triggerChapter5() {
@@ -543,7 +571,9 @@ namespace Story {
         printMessage("不行，有人正在外部強行駭入！是組織的駭客！", "灰原哀");
         printMessage("他們想讓伺服器過熱重啟。絕對不能讓他們得逞！", "柯南");
         printMessage(">> 新地點解鎖：地下維修通道", "", 30, Color::GREEN);
+        printMessage("地下維修通道好像有聲音", "神秘聲音", 0, Color::GRAY);
     }
+    
 
     void triggerChapter6() {
         gState.chapter = 6;
@@ -553,6 +583,7 @@ namespace Story {
         printMessage("想奪走諾亞方舟？別小看我開發的防禦邏輯！", "灰原哀");
         printMessage("伏特加，發射魚雷，直接把控制室炸了！", "琴酒");
         printMessage(">> 新地點解鎖：水下伺服器室", "", 30, Color::GREEN);
+        printMessage("水下伺服器室好像有腳步聲", "神秘聲音", 0, Color::GRAY);
     }
 
     void triggerChapter7() {
@@ -580,8 +611,9 @@ namespace Story {
         printMessage("看來那個AI，比我們想像的還要在乎「人心」啊。", "柯南");
         
         wait(1000);
-        
-        printMessage("=== THANK YOU FOR PLAYING ===", "", 100, Color::YELLOW);
+        printMessage("=============================", "", 100, Color::YELLOW);
+        printMessage("    THANK YOU FOR PLAYING    ", "", 100, Color::YELLOW);
+        printMessage("=============================", "", 100, Color::YELLOW);
         printMessage("雖然黑衣組織撤退了，但還有許多謎題等待解決...", "", 50, Color::GRAY);
         printMessage("輸入 0 結束遊戲...", "", 100, Color::GRAY);
     }
@@ -681,9 +713,6 @@ void openShop();
 // 重新開始遊戲 (初始化所有狀態)
 void resetGame(vector<Character*>& team, vector<Character*>& reserve) {
     printMessage("\n系統啟動中...", "", 50, Color::BLUE);
-    
-    Story::triggerChapter0();
-    wait(1000);
 
     // 清空角色
     for(auto* c : team) delete c;
@@ -723,6 +752,9 @@ void resetGame(vector<Character*>& team, vector<Character*>& reserve) {
     // 初始道具
     addToInventory(shopItems[0]); 
     inventory[0].count = 3; 
+
+    Story::triggerChapter0();
+    wait(1000);
 }
 
 // 隨機事件
@@ -1116,9 +1148,8 @@ bool useItemMenu(vector<Character*>& team) {
 // ==========================================
 
 int main() {
-    #ifdef _WIN32
-    system("chcp 65001 > nul"); // Windows 設定 UTF-8
-    #endif
+    setupConsole(); // 設定編碼為 UTF-8 (Windows)
+    
     // 隊伍與待命成員
     vector<Character*> team;
     vector<Character*> reserve;
